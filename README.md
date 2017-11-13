@@ -5,7 +5,10 @@ A small, zero-config, file-based REST API database.
 - download, open in VS, F5
 
 ## Usage
-If you installed it globally, just type `resty` and pass any command-line parameter (see below). If you installed it locally, type `node_modules/.bin/resty`.
+Run from VS
+Run from commandline: dotnet run 
+
+Use your favorite browser or API tool: http://localhost:50157
 
 Data is stored in JSON files, one file per path. For example, all requests to `/api/users` will read and update from users.json.
 
