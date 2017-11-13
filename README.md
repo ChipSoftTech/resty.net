@@ -1,6 +1,8 @@
 # Resty
 A small, zero-config, file-based REST API database.
 
+*Alpha 0.1, major updates and changes
+
 ## Install
 - download, open in VS, F5
 
