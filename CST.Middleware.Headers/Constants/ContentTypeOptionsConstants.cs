@@ -1,4 +1,4 @@
-﻿namespace AppWithDefaultSecurityHeaders.Middleware.Constants
+﻿namespace CST.NETCore.Headers.Constants
 {
     /// <summary>
     /// X-Content-Type-Options-related constants.

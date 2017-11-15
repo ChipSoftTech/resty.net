@@ -1,4 +1,4 @@
-namespace AppWithDefaultSecurityHeaders.Middleware.Constants
+namespace CST.NETCore.Headers.Constants
 {
     /// <summary>
     /// Strict-Transport-Security-related constants.

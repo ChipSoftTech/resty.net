@@ -25,4 +25,8 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CST.Middleware.Headers\CST.NETCore.Headers.csproj" />
+  </ItemGroup>
+
 </Project>

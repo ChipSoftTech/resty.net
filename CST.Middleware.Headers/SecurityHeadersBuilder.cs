@@ -1,7 +1,7 @@
 using System;
-using AppWithDefaultSecurityHeaders.Middleware.Constants;
+using CST.NETCore.Headers.Constants;
 
-namespace AppWithDefaultSecurityHeaders.Middleware
+namespace CST.NETCore.Headers
 {
     /// <summary>
     /// Exposes methods to build a policy.
@@ -194,6 +194,12 @@ namespace AppWithDefaultSecurityHeaders.Middleware
         public SecurityHeadersPolicy Build()
         {
             return _policy;
+        }
+
+        ///test
+        public void Test()
+        {
+            //only a test;
         }
     }
 }

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using AppWithDefaultSecurityHeaders.Middleware.Constants;
+using CST.NETCore.Headers.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
-namespace AppWithDefaultSecurityHeaders.Middleware
+namespace CST.NETCore.Headers
 {
     /// <summary>
     /// An ASP.NET middleware for adding security headers.

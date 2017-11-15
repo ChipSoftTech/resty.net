@@ -31,7 +31,7 @@ namespace resty
 
             if (!context.Request.Path.Value.Contains("api"))
             {
-                // call next middleware
+                // call next middleware and return (not an api call)
                 await _next.Invoke(context);
 
                 return;
@@ -101,7 +101,7 @@ namespace resty
 
                 if (fvalue == null)
                 {
-                    using (StreamReader reader = File.OpenText(@"data/authors.json"))
+                    using (StreamReader reader = File.OpenText(@"data/" + fname + ".json"))
                     {
                         fvalue = (JArray)JToken.ReadFrom(new JsonTextReader(reader));
                     }

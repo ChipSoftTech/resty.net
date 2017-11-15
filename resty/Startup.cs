@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using AppWithScheduler.Code.Scheduling;
 using AppWithScheduler.Code;
-using AppWithDefaultSecurityHeaders.Middleware;
+using CST.NETCore.Headers;
 
 namespace resty
 {
