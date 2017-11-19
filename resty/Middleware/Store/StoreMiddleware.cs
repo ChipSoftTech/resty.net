@@ -18,7 +18,7 @@ namespace resty
 
         public StoreMiddleware(RequestDelegate next, IDistributedCache cache)
         {
-            Log.Information("StoreMiddleware starting");
+            Log.Debug("StoreMiddleware starting");
 
             _cache = cache;
             _next = next;
@@ -26,9 +26,6 @@ namespace resty
 
         public async Task Invoke(HttpContext context)
         {
-            // code executed before the next middleware
-            Log.Information("StoreMiddleware Invoke");
-
             if (!context.Request.Path.Value.Contains("api"))
             {
                 // call next middleware and return (not an api call)
@@ -39,15 +36,24 @@ namespace resty
 
             JArray value = getJsonFile(context);
 
+            if(value == null)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(@"{ ""code"": 404, ""msg"": ""Invalid collection name"" }");
+                Log.Information("Invalid collection name");
+
+                return;
+            }
+
             // call next middleware
             await _next.Invoke(context);
 
             // code executed after the next middleware
             context.Response.StatusCode = 200; //response status 200
-              
-            await context.Response.WriteAsync(value.ToString());
+            
+            await context.Response.WriteAsync(@"{ ""code"": 200, ""msg"": ""OK"", ""data"": " + value.ToString() + "}");
 
-            Log.Information("StoreMiddleware ending");
+            Log.Debug("StoreMiddleware ending");
         }
 
         private void handleGetAll(HttpContext context)

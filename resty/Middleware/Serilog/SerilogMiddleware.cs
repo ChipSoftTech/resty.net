@@ -16,7 +16,7 @@ namespace resty.Middleware.SerilogMiddleware
     {
         const string MessageTemplate = "HTTP {RequestMethod} {RequestPath} responded {StatusCode} in {Elapsed:0.0000} ms";
 
-        static readonly ILogger Log = Serilog.Log.ForContext<SerilogMiddleware>();
+//        static readonly ILogger Log = Serilog.Log.ForContext<SerilogMiddleware>();
 
         readonly RequestDelegate _next;
 
@@ -39,8 +39,7 @@ namespace resty.Middleware.SerilogMiddleware
                 var statusCode = httpContext.Response?.StatusCode;
                 var level = statusCode > 499 ? LogEventLevel.Error : LogEventLevel.Information;
 
-                var log = level == LogEventLevel.Error ? LogForErrorContext(httpContext) : Log;
-                log.Write(level, MessageTemplate, httpContext.Request.Method, httpContext.Request.Path, statusCode, elapsedMs);
+                Log.Write(level, MessageTemplate, httpContext.Request.Method, httpContext.Request.Path, statusCode, elapsedMs);
             }
             // Never caught, because `LogException()` returns false.
             catch (Exception ex) when (LogException(httpContext, GetElapsedMilliseconds(start, Stopwatch.GetTimestamp()), ex)) { }

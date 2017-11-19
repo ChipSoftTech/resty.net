@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
 using CST.NETCore.SchedulerService.Code;
+using System.Diagnostics;
+using Serilog.Events;
+using System;
 
 namespace resty.Services
 {
@@ -21,18 +24,41 @@ namespace resty.Services
 
         private readonly IDistributedCache _cache;
 
+        const string MessageTemplate = "CacheWriteTask responded {StatusCode} in {Elapsed:0.0000} ms";
+
         public CacheWriteTask(IDistributedCache cache)
         {
-            Log.Information("CacheWriteTask starting");
-
             _cache = cache;
         }
 
         public async Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            Log.Information("CacheWriteTask Task Starting");
+            var start = Stopwatch.GetTimestamp();
+            try
+            {
+                var elapsedMs = GetElapsedMilliseconds(start, Stopwatch.GetTimestamp());
 
-            await Task.Delay(5000, cancellationToken);
+                await Task.Delay(5000, cancellationToken);
+
+                var level = LogEventLevel.Information;
+                Log.Write(level, MessageTemplate, "OK", elapsedMs);
+            }
+            // Never caught, because `LogException()` returns false.
+            catch (Exception ex) when (LogException(GetElapsedMilliseconds(start, Stopwatch.GetTimestamp()), ex)) { }
+            
         }
+
+        static bool LogException(double elapsedMs, Exception ex)
+        {
+            Log.Write(LogEventLevel.Error, ex, MessageTemplate, "Error", elapsedMs);
+
+            return false;
+        }
+
+        static double GetElapsedMilliseconds(long start, long stop)
+        {
+            return (stop - start) * 1000 / (double)Stopwatch.Frequency;
+        }
+
     }
 }
