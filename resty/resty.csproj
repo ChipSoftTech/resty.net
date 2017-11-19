@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CST.NETCore.Headers" Version="1.0.3-rc" />
+    <PackageReference Include="CST.NETCore.ScheduleService" Version="1.0.1-rc" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.0" />
@@ -23,10 +25,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CST.NETCore.Headers\CST.NETCore.Headers.csproj" />
   </ItemGroup>
 
 </Project>

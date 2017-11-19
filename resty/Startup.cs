@@ -8,9 +8,11 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using AppWithScheduler.Code.Scheduling;
-using AppWithScheduler.Code;
 using CST.NETCore.Headers;
+using resty.Middleware.SerilogMiddleware;
+using CST.NETCore.SchedulerService.Code;
+using resty.Services;
+using CST.NETCore.SchedulerService.Code.Scheduling;
 
 namespace resty
 {
@@ -73,6 +75,9 @@ namespace resty
 
             // Cors global policy - assign here or on each controller
             app.UseCors("CorsPolicy");
+
+            //Formatted and additional logging information
+            app.UseSerilogMiddleware();
 
             //Static files
             app.UseFileServer();

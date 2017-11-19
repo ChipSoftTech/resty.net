@@ -6,9 +6,9 @@ using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
-using AppWithScheduler.Code;
+using CST.NETCore.SchedulerService.Code;
 
-namespace AppWithScheduler.Code
+namespace resty.Services
 {
     public class CacheWriteTask : IScheduledTask
     {

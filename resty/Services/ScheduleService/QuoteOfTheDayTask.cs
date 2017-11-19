@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using CST.NETCore.SchedulerService.Code;
 
 namespace AppWithScheduler.Code
 {
